@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 
-const START_DATE = new Date("2024-07-19T00:00:00");
+const START_DATE = new Date("2023-11-28T00:00:00");
 
 function getTimeSince(start: Date) {
   const now = new Date();

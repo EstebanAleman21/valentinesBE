@@ -50,6 +50,8 @@ vite.config.ts.timestamp*
 # Storybook
 storybook-static/
 
+.next/
+
 # Lock files (optional — usually you DO commit one of these)
 # Uncomment ONLY if you intentionally don't want lockfiles tracked
 # package-lock.json

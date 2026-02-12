@@ -80,12 +80,12 @@ export function TogetherCounter() {
   }, []);
 
   const units = [
-    { value: time.years, label: "Years" },
-    { value: time.months, label: "Months" },
-    { value: time.days, label: "Days" },
-    { value: time.hours, label: "Hours" },
-    { value: time.minutes, label: "Minutes" },
-    { value: time.seconds, label: "Seconds" },
+    { value: time.years, label: "Años" },
+    { value: time.months, label: "Meses" },
+    { value: time.days, label: "Dias" },
+    { value: time.hours, label: "Horas" },
+    { value: time.minutes, label: "Minutos" },
+    { value: time.seconds, label: "Segundos" },
   ];
 
   return (
@@ -99,10 +99,10 @@ export function TogetherCounter() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
-            How Long We Have Been Together
+            Cuanto tiempo llevamos juntos, para que jamas se te olvide jejeje
           </h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Every second with you is a second I treasure.
+            No hay segundo a tu lado que no lo aprecie
           </p>
         </motion.div>
 
@@ -121,7 +121,7 @@ export function TogetherCounter() {
         >
           <p className="inline-flex items-center gap-2 font-serif text-lg italic text-muted-foreground">
             <Heart className="h-4 w-4 fill-primary text-primary" />
-            That is {time.totalDays.toLocaleString()} days of loving you
+            Wow ya son {time.totalDays.toLocaleString()} dias en los que no he parado de amarte ni un solo segundo.
             <Heart className="h-4 w-4 fill-primary text-primary" />
           </p>
         </motion.div>

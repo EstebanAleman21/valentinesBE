@@ -26,7 +26,7 @@ export function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.2 }}
         >
-          Our Story
+          La historia mas maravillosa.
         </motion.h1>
         <motion.p
           className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl"
@@ -34,8 +34,7 @@ export function HeroSection() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          Every love story is beautiful, but ours is my favorite. This is a
-          little corner of the internet dedicated to us.
+          Todo historia de amor desde hace miles de años, en obras de teatro hasta hoy en dia en Instagram tienen lo suyo, sin embargo... La nuestra es mi favorita.
         </motion.p>
         <motion.div
           initial={{ opacity: 0 }}
@@ -46,7 +45,7 @@ export function HeroSection() {
             href="#why-i-love-you"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-all hover:shadow-xl hover:brightness-110"
           >
-            Discover Us
+            Descubrelo :)
             <ChevronDown className="h-4 w-4" />
           </a>
         </motion.div>

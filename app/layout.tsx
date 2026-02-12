@@ -18,8 +18,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Our Story",
-  description: "A love letter written in code.",
+  title: "Nuestra Historia",
+  description: "Una carta de amor moderna...",
 };
 
 export const viewport: Viewport = {

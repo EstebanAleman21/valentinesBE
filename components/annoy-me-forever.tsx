@@ -62,10 +62,10 @@ export function AnnoyMeForever() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
-            {"Annoy Me Forever"}
+            {"Molestame"}
           </h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Go ahead. You have my full permission. Actually, I insist.
+            Andale te doy permiso tlj, hazlo sin miedo al excito!!
           </p>
         </motion.div>
 
@@ -82,7 +82,7 @@ export function AnnoyMeForever() {
             className="group inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-lg font-semibold text-primary-foreground shadow-lg transition-all hover:shadow-xl hover:brightness-110"
           >
             <Mail className="h-5 w-5 transition-transform group-hover:-rotate-12" />
-            Send Me Love
+            Mandame un abracho
             <Heart className="h-5 w-5 transition-transform group-hover:scale-125" />
           </button>
         </motion.div>
@@ -96,7 +96,7 @@ export function AnnoyMeForever() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              You now have unlimited lifetime access to annoying me.
+              Felicidades ahora me podras molestar mmmm siempre :)
             </motion.p>
           )}
         </AnimatePresence>

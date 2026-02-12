@@ -5,46 +5,47 @@ import { LoveCard } from "./love-card";
 
 const reasons = [
   {
-    title: "Your Smile",
+    title: "Tu sonrisa",
     description:
-      "The way your smile lights up every room you walk into. It is the first thing I fell in love with and still makes my heart skip.",
+      "La forma en que tu sonrisa ilumina cada lugar al que entras. Fue lo primero de lo que me enamoré y todavía hace que mi corazón se acelere.",
   },
   {
-    title: "Your Kindness",
+    title: "Tu bondad",
     description:
-      "You have the most beautiful heart. The way you care for everyone around you inspires me to be a better person every single day.",
+      "Tienes el corazón más hermoso. La manera en que cuidas a todos a tu alrededor me inspira a ser una mejor persona cada día.",
   },
   {
-    title: "Your Laugh",
+    title: "Tu risa",
     description:
-      "That laugh that starts quietly and then takes over completely. It is the most contagious and wonderful sound in the world.",
+      "Esa risa que empieza suave y luego lo invade todo. Es el sonido más contagioso y maravilloso del mundo.",
   },
   {
-    title: "Your Strength",
+    title: "Tu fortaleza",
     description:
-      "How you face every challenge with grace and determination. Your resilience is one of the things I admire most about you.",
+      "La forma en que enfrentas cada desafío con gracia y determinación. Tu resiliencia es una de las cosas que más admiro de ti.",
   },
   {
-    title: "Your Weirdness",
+    title: "Tu rareza",
     description:
-      "The little quirky things you do that nobody else does. Every one of those little moments makes me fall for you all over again.",
+      "Esas pequeñas cosas peculiares que haces y que nadie más hace. Cada uno de esos momentos me hace enamorarme de ti una y otra vez.",
   },
   {
-    title: "Your Dreams",
+    title: "Tus sueños",
     description:
-      "The way your eyes sparkle when you talk about things you are passionate about. I love watching you chase your dreams.",
+      "La manera en que tus ojos brillan cuando hablas de lo que te apasiona. Me encanta verte perseguir tus sueños.",
   },
   {
-    title: "Your Patience",
+    title: "Tu paciencia",
     description:
-      "How you always know the right moment to listen and the right moment to speak. You make me feel truly heard.",
+      "Cómo siempre sabes el momento adecuado para escuchar y el momento adecuado para hablar. Me haces sentir realmente escuchado.",
   },
   {
-    title: "Everything",
+    title: "Todo",
     description:
-      "Because listing reasons would take forever. I love you for the big things, the small things, and everything in between.",
+      "Porque enumerar razones me llevaría una eternidad. Te amo por las cosas grandes, las pequeñas y todo lo que hay en medio.",
   },
 ];
+
 
 export function WhyILoveYou() {
   return (

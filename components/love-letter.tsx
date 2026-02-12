@@ -4,21 +4,29 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart } from "lucide-react";
 
-const letterText = `My dearest,
+const letterText = `AMORCITOOOOOOOOOO,
 
-From the very first moment I saw you, something in me knew that you were going to change my life. I did not know how, and I did not know when, but I felt it in every part of me.
+Como se empieza una carta que escribo como el millon de lineas de codigo jajajaja. Es diferente bastante diria yo sin embargo eso no le quita lo especial en lo absoluto.
 
-You walked into my world and suddenly everything made sense. The songs I never understood, the poems that felt exaggerated, the movies I thought were unrealistic — you made all of it real.
+Primero que nada amor mio yo creo que este es el san valentin mas especial que tendremos en los proximos años no por que haya algo super wowo planeado pero sin embargo por que nuestras vidas estan a punto de cambiar...
 
-I love the way you scrunch your nose when you laugh too hard. I love the way you hold my hand a little tighter when you are nervous. I love the way you always save the last bite for me even though you pretend you don't.
+Ya se que suena dramtico dejame soy un dramas per es la puritita verdad. En un mes me voy de MTY por lo que espero sean varios años y en unos meses mas estare regresando por ti mi compañera de vida para empezar nuestra travesia juntos por esto llamado vida.
 
-There are days when the world feels heavy, but then I look at you and I remember — I have the best reason to keep going. You are my peace, my chaos, my calm in the storm, and the storm itself.
+Si te soy sincero jamas me imagine teniendo una vida asi y que sea relativamente posible la gran mayoria de tiempo lo vi como un sueño, sin embargo aqui esta... esta sucediendo y no puedo estar mas feliz de estar haciendo contigo amor enserio.
 
-Thank you for choosing me. Thank you for staying. Thank you for being the most extraordinary part of my ordinary life.
+Barbara en esta pagina no planeo que la visites diario ni tampoco que la tengas guardada en algun bookmark que jamas checaras quiero que este ahi para que cuando nos acordemos tengamos un lugar seguro, un lugar donde ir un lugar donde siempre me puedes contactar.
 
-I will love you in this lifetime and every one after it.
+Se vienen un chorro de cambios chaparrita pero si algo me ha enseñado este ultimo año es que la vida da muchisimas vuelta sy jamas va a estar uno preparado para lo que viene sin embargo no se que me vaya a tirar la vida pero si se que quiero pasarlo contigo, bueno, malo, genial, terrible, asombroso, lo que sea lo quiero contigo.
 
-Forever yours.`;
+Para no hacer esto aun mas largo de lo que ya es, solo quiero terminar con esto.
+
+Toma esta pagina como lo que es un pedacito de quien soy, toma este regalo como un lugar seguro, por que te aseguro que sea lo que sea lo hago con mi corazon abierto hacia ti barbarita. Te amo con mi alma entera, con absolutamente todo mi corazon, eres lo mas especial en mi vida jamas olvides nada de esto. 
+
+Te amo
+
+Con muchisimo amor,
+Esteban.
+`;
 
 function TypewriterText({ text, speed = 25 }: { text: string; speed?: number }) {
   const [displayed, setDisplayed] = useState("");
@@ -67,10 +75,10 @@ export function LoveLetter() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
-            A Letter For You
+            Una carta para ti
           </h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Some things are better written than spoken. Open it when you are ready.
+            Tu sabes lo mucho que me gusta escribir cartas aunque sea en codigo cada palabra es mia y viene de mi corazón. 
           </p>
         </motion.div>
 
@@ -132,7 +140,7 @@ export function LoveLetter() {
                 <div className="mb-6 flex items-center gap-2">
                   <Heart className="h-5 w-5 fill-primary text-primary" />
                   <span className="font-serif text-xs uppercase tracking-widest text-muted-foreground">
-                    A love letter
+                    Una carta de amor para ti, chaparrita 
                   </span>
                 </div>
                 <TypewriterText text={letterText} speed={20} />

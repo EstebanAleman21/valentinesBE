@@ -20,11 +20,14 @@ export function SiteFooter() {
         transition={{ duration: 0.8 }}
       >
         <p className="font-serif text-lg italic text-foreground">
-          You are the best chapter in my story.
+          Eres el capitulo favorito de mi novela favorita.
         </p>
         <Heart className="h-5 w-5 text-primary" />
+        <p className="font-serif text-lg italic text-foreground">
+          TE AMO
+        </p>
         <p className="text-sm text-muted-foreground">
-          {"Made with \u2764\uFE0F just for you"}
+          {"Hecho con muchisimo amor,\n Atte: Teban"}
         </p>
       </motion.div>
     </footer>

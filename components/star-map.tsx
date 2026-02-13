@@ -3,68 +3,68 @@
 import { useRef, useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import * as Astronomy from "astronomy-engine";
 
-// Deterministic pseudo-random based on a seed
-function seededRandom(seed: number) {
-  let s = seed;
-  return () => {
-    s = (s * 16807 + 0) % 2147483647;
-    return (s - 1) / 2147483646;
-  };
+const THE_DATE = "July 19, 2023";
+const THE_TIME = "12:00 AM";
+// Monterrey, Mexico coordinates
+const LATITUDE = 25.6866;
+const LONGITUDE = -100.3161;
+
+// Create the specific date and time
+const targetDate = new Date("2023-07-19T00:00:00-06:00"); // CST timezone
+
+interface Star {
+  name: string;
+  x: number;
+  y: number;
+  brightness: number;
 }
-
-const THE_DATE = "January 15, 2023";
-const DATE_SEED = 20230115;
-
-// Named constellations with offsets relative to canvas center
-const constellations = [
-  {
-    name: "Orion",
-    stars: [
-      { x: -120, y: -80 },
-      { x: -90, y: -50 },
-      { x: -60, y: -80 },
-      { x: -90, y: -20 },
-      { x: -90, y: 10 },
-      { x: -120, y: 40 },
-      { x: -60, y: 40 },
-    ],
-    lines: [
-      [0, 1], [1, 2], [1, 3], [3, 4], [4, 5], [4, 6],
-    ],
-  },
-  {
-    name: "Cassiopeia",
-    stars: [
-      { x: 80, y: -100 },
-      { x: 110, y: -70 },
-      { x: 140, y: -90 },
-      { x: 170, y: -60 },
-      { x: 200, y: -80 },
-    ],
-    lines: [
-      [0, 1], [1, 2], [2, 3], [3, 4],
-    ],
-  },
-  {
-    name: "Lyra",
-    stars: [
-      { x: -20, y: 80 },
-      { x: -40, y: 110 },
-      { x: 0, y: 110 },
-      { x: -40, y: 140 },
-      { x: 0, y: 140 },
-    ],
-    lines: [
-      [0, 1], [0, 2], [1, 3], [2, 4], [3, 4],
-    ],
-  },
-];
 
 export function StarMap() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animFrameRef = useRef<number>(0);
   const [mounted, setMounted] = useState(false);
+  const [stars, setStars] = useState<Star[]>([]);
+
+  // Calculate actual star positions
+  useEffect(() => {
+    if (!mounted) return;
+
+    const observer = new Astronomy.Observer(LATITUDE, LONGITUDE, 0);
+    const calculatedStars: Star[] = [];
+
+    // Get positions of visible planets and bright stars
+    const bodies = [
+      Astronomy.Body.Sun,
+      Astronomy.Body.Moon,
+      Astronomy.Body.Mars,
+      Astronomy.Body.Jupiter,
+      Astronomy.Body.Saturn,
+      Astronomy.Body.Venus,
+    ];
+
+    bodies.forEach((body) => {
+      try {
+        const equator = Astronomy.Equator(body, targetDate, observer, true, true);
+        const horizon = Astronomy.Horizon(targetDate, observer, equator.ra, equator.dec, "normal");
+        
+        // Only show objects above horizon
+        if (horizon.altitude > 0) {
+          calculatedStars.push({
+            name: Astronomy.Body[body],
+            x: horizon.azimuth,
+            y: horizon.altitude,
+            brightness: body === Astronomy.Body.Moon ? 0.9 : body === Astronomy.Body.Venus ? 0.8 : 0.7,
+          });
+        }
+      } catch (e) {
+        // Skip if calculation fails
+      }
+    });
+
+    setStars(calculatedStars);
+  }, [mounted]);
 
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
@@ -80,115 +80,84 @@ export function StarMap() {
 
     const w = rect.width;
     const h = rect.height;
-    const cx = w / 2;
-    const cy = h / 2;
 
     // Background: deep night sky gradient
-    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(w, h) * 0.7);
-    grad.addColorStop(0, "#1a1033");
-    grad.addColorStop(0.5, "#0d0a1a");
+    const grad = ctx.createLinearGradient(0, 0, 0, h);
+    grad.addColorStop(0, "#0a0a1a");
+    grad.addColorStop(0.5, "#1a1033");
     grad.addColorStop(1, "#050510");
     ctx.fillStyle = grad;
     ctx.fillRect(0, 0, w, h);
 
-    // Random background stars
-    const rand = seededRandom(DATE_SEED);
-    const starCount = Math.floor((w * h) / 600);
-    const time = Date.now() * 0.001;
-
+    // Random background stars for atmosphere
+    const time = Date.now() * 0.0005;
+    const starCount = Math.floor((w * h) / 1000);
+    
     for (let i = 0; i < starCount; i++) {
-      const sx = rand() * w;
-      const sy = rand() * h;
-      const size = rand() * 1.5 + 0.3;
-      const brightness = 0.3 + rand() * 0.5 + Math.sin(time + i * 0.7) * 0.15;
+      const sx = (i * 137.5) % w;
+      const sy = (i * 214.3) % h;
+      const size = (i % 3) * 0.5 + 0.3;
+      const brightness = 0.2 + ((i % 5) / 5) * 0.3 + Math.sin(time + i * 0.7) * 0.1;
       ctx.beginPath();
       ctx.arc(sx, sy, size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
       ctx.fill();
     }
 
-    // Draw constellations
-    constellations.forEach((c) => {
-      const stars = c.stars.map((s) => ({
-        x: cx + s.x,
-        y: cy + s.y,
-      }));
+    // Draw actual calculated celestial objects
+    stars.forEach((star) => {
+      // Convert azimuth and altitude to canvas coordinates
+      // Azimuth: 0-360 degrees (0=North, 90=East, 180=South, 270=West)
+      // Altitude: 0-90 degrees (0=horizon, 90=zenith)
+      
+      const azimuthRad = (star.x * Math.PI) / 180;
+      const altitudeNormalized = star.y / 90; // 0 to 1
+      
+      // Map to canvas - altitude determines radius from center
+      const centerX = w / 2;
+      const centerY = h / 2;
+      const maxRadius = Math.min(w, h) * 0.4;
+      const radius = maxRadius * (1 - altitudeNormalized);
+      
+      const x = centerX + radius * Math.sin(azimuthRad);
+      const y = centerY - radius * Math.cos(azimuthRad);
 
-      // Lines
-      ctx.strokeStyle = "rgba(249, 198, 211, 0.25)";
-      ctx.lineWidth = 1;
-      c.lines.forEach(([a, b]) => {
-        ctx.beginPath();
-        ctx.moveTo(stars[a].x, stars[a].y);
-        ctx.lineTo(stars[b].x, stars[b].y);
-        ctx.stroke();
-      });
+      // Draw star with glow
+      const pulse = 1 + Math.sin(time * 2 + star.x) * 0.2;
+      const glowSize = 12 * pulse * star.brightness;
+      const glow = ctx.createRadialGradient(x, y, 0, x, y, glowSize);
+      glow.addColorStop(0, `rgba(255, 255, 255, ${star.brightness})`);
+      glow.addColorStop(0.3, `rgba(249, 198, 211, ${star.brightness * 0.6})`);
+      glow.addColorStop(0.6, `rgba(231, 84, 128, ${star.brightness * 0.3})`);
+      glow.addColorStop(1, "rgba(231, 84, 128, 0)");
+      
+      ctx.beginPath();
+      ctx.arc(x, y, glowSize, 0, Math.PI * 2);
+      ctx.fillStyle = glow;
+      ctx.fill();
 
-      // Stars with glow
-      stars.forEach((s, i) => {
-        const pulse = 1 + Math.sin(time * 1.5 + i * 2) * 0.3;
-        const glow = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 6 * pulse);
-        glow.addColorStop(0, "rgba(249, 198, 211, 0.9)");
-        glow.addColorStop(0.5, "rgba(231, 84, 128, 0.3)");
-        glow.addColorStop(1, "rgba(231, 84, 128, 0)");
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, 6 * pulse, 0, Math.PI * 2);
-        ctx.fillStyle = glow;
-        ctx.fill();
-
-        // Core
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = "#fff";
-        ctx.fill();
-      });
+      // Core
+      ctx.beginPath();
+      ctx.arc(x, y, 2, 0, Math.PI * 2);
+      ctx.fillStyle = "#fff";
+      ctx.fill();
 
       // Label
-      const labelStar = stars[0];
       ctx.font = "11px sans-serif";
-      ctx.fillStyle = "rgba(249, 198, 211, 0.5)";
-      ctx.fillText(c.name, labelStar.x + 10, labelStar.y - 10);
+      ctx.fillStyle = "rgba(249, 198, 211, 0.7)";
+      ctx.fillText(star.name, x + 10, y - 10);
     });
 
-    // "Our Star" — a special brighter star
-    const ourX = cx + 40;
-    const ourY = cy - 10;
-    const ourPulse = 1 + Math.sin(time * 2) * 0.4;
-    const ourGlow = ctx.createRadialGradient(ourX, ourY, 0, ourX, ourY, 14 * ourPulse);
-    ourGlow.addColorStop(0, "rgba(255, 255, 255, 1)");
-    ourGlow.addColorStop(0.3, "rgba(249, 198, 211, 0.7)");
-    ourGlow.addColorStop(0.6, "rgba(231, 84, 128, 0.3)");
-    ourGlow.addColorStop(1, "rgba(231, 84, 128, 0)");
-    ctx.beginPath();
-    ctx.arc(ourX, ourY, 14 * ourPulse, 0, Math.PI * 2);
-    ctx.fillStyle = ourGlow;
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(ourX, ourY, 3, 0, Math.PI * 2);
-    ctx.fillStyle = "#fff";
-    ctx.fill();
-
-    ctx.font = "italic 12px serif";
-    ctx.fillStyle = "rgba(249, 198, 211, 0.7)";
-    ctx.fillText("Our Star", ourX + 16, ourY + 4);
-
-    // Circular border
-    ctx.beginPath();
-    const radius = Math.min(w, h) * 0.45;
-    ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(249, 198, 211, 0.15)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // Date label at bottom of circle
+    // Date label
     ctx.font = "13px sans-serif";
-    ctx.fillStyle = "rgba(249, 198, 211, 0.5)";
+    ctx.fillStyle = "rgba(249, 198, 211, 0.6)";
     ctx.textAlign = "center";
-    ctx.fillText(`The night sky on ${THE_DATE}`, cx, cy + radius + 24);
+    ctx.fillText(`The night sky on ${THE_DATE} at ${THE_TIME}`, w / 2, h - 20);
+    ctx.fillText(`Monterrey, Mexico`, w / 2, h - 5);
     ctx.textAlign = "start";
 
     animFrameRef.current = requestAnimationFrame(draw);
-  }, []);
+  }, [stars]);
 
   useEffect(() => {
     setMounted(true);
@@ -213,7 +182,7 @@ export function StarMap() {
 
   return (
     <section className="px-4 py-24 md:py-32">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <motion.div
           className="mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -236,7 +205,7 @@ export function StarMap() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="relative aspect-square w-full max-w-lg overflow-hidden rounded-full border border-[rgba(249,198,211,0.2)] shadow-2xl">
+          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-3xl border border-[rgba(249,198,211,0.2)] shadow-2xl">
             <canvas
               ref={canvasRef}
               className="h-full w-full"

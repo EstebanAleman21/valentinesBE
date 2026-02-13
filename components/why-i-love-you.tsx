@@ -17,32 +17,32 @@ const reasons = [
   {
     title: "Tu risa",
     description:
-      "Esa risa que empieza suave y luego lo invade todo. Es el sonido más contagioso y maravilloso del mundo.",
+      "Me encanta tu risa tan preciosa que hace que aun cuando me siento mal o estresado me aliviana el dia por completo.",
   },
   {
     title: "Tu fortaleza",
     description:
-      "La forma en que enfrentas cada desafío con gracia y determinación. Tu resiliencia es una de las cosas que más admiro de ti.",
+      "La forma en que enfrentas cada desafío es asombroso me encanta. Tu forma de ver las cosas positivas es una de las cosas que más admiro de ti.",
   },
   {
-    title: "Tu rareza",
+    title: "Tu chisqueadez",
     description:
-      "Esas pequeñas cosas peculiares que haces y que nadie más hace. Cada uno de esos momentos me hace enamorarme de ti una y otra vez.",
+      "Lo adoroooo, me encanta como es cada partecita de ti, tu forma de ser tan chisqueada es una de las cosas que más amo de ti, y que mas disfruto todooos los dias.",
   },
   {
-    title: "Tus sueños",
-    description:
-      "La manera en que tus ojos brillan cuando hablas de lo que te apasiona. Me encanta verte perseguir tus sueños.",
-  },
-  {
-    title: "Tu paciencia",
+    title: "Tu paciencia conmigo jeje",
     description:
       "Cómo siempre sabes el momento adecuado para escuchar y el momento adecuado para hablar. Me haces sentir realmente escuchado.",
   },
   {
+    title: "Tu creatividad",
+    description:
+      "Admiro tu manera de ser tan creativa con aboslutamente todo, manualidades, arte, etc. Te lo juro qu eme encanta!",
+  },
+  {
     title: "Todo",
     description:
-      "Porque enumerar razones me llevaría una eternidad. Te amo por las cosas grandes, las pequeñas y todo lo que hay en medio.",
+      "Por que la verdad podria seguir aqui todo el dia diciendo cosas que amo de ti, pero la verdad es que amo absolutamente todo de ti, cada partecita de ti es lo que me hace amarte tanto, y lo que me hace querer seguir amandote cada dia mas y mas.",
   },
 ];
 
@@ -59,11 +59,10 @@ export function WhyILoveYou() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
-            Why I Love You
+            ¿Por qué te amo con todo mi corazón?
           </h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            A few of the million reasons why you are the best thing that ever
-            happened to me.
+            Estas son algunas de las millones de razones por las que eres lo mejor que me ha pasado.
           </p>
         </motion.div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

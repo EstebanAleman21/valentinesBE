@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 const notes = [
-  { text: "You are my favorite notification.", color: "bg-[#f9c6d3]", rotate: -3 },
-  { text: "Home is wherever I am with you.", color: "bg-[#fff6ec]", rotate: 2 },
-  { text: "You make ordinary days feel magical.", color: "bg-[#fde4cf]", rotate: -1.5 },
-  { text: "I love you more than yesterday, less than tomorrow.", color: "bg-[#f9c6d3]", rotate: 3 },
-  { text: "Thank you for being you.", color: "bg-[#fff6ec]", rotate: -2.5 },
-  { text: "You are worth every mile.", color: "bg-[#fde4cf]", rotate: 1.5 },
-  { text: "Forever sounds perfect with you.", color: "bg-[#f9c6d3]", rotate: -1 },
-  { text: "P.S. I adore you.", color: "bg-[#fff6ec]", rotate: 2.5 },
+  { text: "Me encantan tus abrachos", color: "bg-[#f9c6d3]", rotate: -3 },
+  { text: "Tu eres mi hogar", color: "bg-[#fff6ec]", rotate: 2 },
+  { text: "Haces que los días normales se sientan asombrosos.", color: "bg-[#fde4cf]", rotate: -1.5 },
+  { text: "Te amo más que ayer, menos que mañana.", color: "bg-[#f9c6d3]", rotate: 3 },
+  { text: "Gracias por ser tú.", color: "bg-[#fff6ec]", rotate: -2.5 },
+  { text: "Eres el amor de mi vida", color: "bg-[#fde4cf]", rotate: 1.5 },
+  { text: "Para siempre suena perfecto contigo.", color: "bg-[#f9c6d3]", rotate: -1 },
+  { text: "Por cierto, te amo.", color: "bg-[#fff6ec]", rotate: 2.5 },
 ];
 
 export function LittleNotes() {
@@ -25,10 +25,10 @@ export function LittleNotes() {
           transition={{ duration: 0.6 }}
         >
           <h2 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
-            Little Notes
+            Pequeños Recordatorios
           </h2>
           <p className="mx-auto mt-4 max-w-md text-muted-foreground">
-            Tiny love letters I wish I could slip into your pocket every day.
+             Pequeños recordatorios de lo mucho que te amo.
           </p>
         </motion.div>
         <div className="flex flex-wrap items-center justify-center gap-6">

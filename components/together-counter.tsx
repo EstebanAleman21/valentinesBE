@@ -89,7 +89,7 @@ export function TogetherCounter() {
   ];
 
   return (
-    <section className="px-4 py-24 md:py-32">
+    <section id="together-counter" className="px-4 py-24 md:py-32">
       <div className="mx-auto max-w-3xl">
         <motion.div
           className="mb-16 text-center"

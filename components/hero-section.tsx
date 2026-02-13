@@ -42,7 +42,7 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 1 }}
         >
           <a
-            href="#why-i-love-you"
+            href="#together-counter"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-3 text-sm font-semibold text-primary-foreground shadow-lg transition-all hover:shadow-xl hover:brightness-110"
           >
             Descubrelo :)

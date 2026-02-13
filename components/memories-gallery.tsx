@@ -1,22 +1,56 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { GalleryItem } from "./gallery-item";
 
 const photos = [
-  { src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600&h=400&fit=crop", alt: "Couple walking on the beach" },
-  { src: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=600&h=400&fit=crop", alt: "Sunset picnic together" },
-  { src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=400&fit=crop", alt: "Dancing in the rain" },
-  { src: "https://images.unsplash.com/photo-1474552226712-ac0f0961a954?w=600&h=400&fit=crop", alt: "Coffee date morning" },
-  { src: "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&h=400&fit=crop", alt: "Road trip adventure" },
-  { src: "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=600&h=400&fit=crop", alt: "Stargazing night" },
+  { src: "/static/images/50A31BF8-D358-4041-B9BA-3061A0117246.JPG", alt: "Our beautiful memory" },
+  { src: "/static/images/66f56612-0d80-49a3-967c-52e6ac99cb9b.JPG", alt: "Together forever" },
+  { src: "/static/images/DSCN1377.JPG", alt: "Special moment" },
+  { src: "/static/images/DSCN1596.JPG", alt: "Happy times" },
+  { src: "/static/images/F38A3BC9-06C7-417D-B2F3-6283DEDE624D.JPG", alt: "Making memories" },
+  { src: "/static/images/IMG_1837.JPG", alt: "Adventure together" },
+  { src: "/static/images/IMG_2876.JPG", alt: "Our love story" },
+  { src: "/static/images/IMG_2994.JPG", alt: "Sweet moments" },
+  { src: "/static/images/IMG_3046.JPG", alt: "Forever and always" },
+  { src: "/static/images/IMG_3105.JPG", alt: "Cherished memory" },
+  { src: "/static/images/IMG_3349.jpg", alt: "You and me" },
+  { src: "/static/images/IMG_3449.JPG", alt: "Perfect day" },
+  { src: "/static/images/IMG_3526.JPG", alt: "Unforgettable moment" },
+  { src: "/static/images/IMG_3581.jpg", alt: "Love captured" },
+  { src: "/static/images/IMG_4266.JPG", alt: "Beautiful together" },
+  { src: "/static/images/IMG_4338.JPG", alt: "Our journey" },
 ];
 
 export function MemoriesGallery() {
   const [selected, setSelected] = useState<number | null>(null);
+  const [displayIndices, setDisplayIndices] = useState([0, 1, 2, 3, 4, 5]);
+
+  // Auto-cycle one random tile every 6 seconds, ensuring no duplicates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDisplayIndices((prev) => {
+        const newIndices = [...prev];
+        const randomTileIndex = Math.floor(Math.random() * 6);
+        
+        // Find a photo that's not already displayed
+        let newPhotoIndex;
+        let attempts = 0;
+        do {
+          newPhotoIndex = Math.floor(Math.random() * photos.length);
+          attempts++;
+        } while (newIndices.includes(newPhotoIndex) && attempts < 50);
+        
+        newIndices[randomTileIndex] = newPhotoIndex;
+        return newIndices;
+      });
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="bg-secondary/40 px-4 py-24 md:py-32">
@@ -37,14 +71,23 @@ export function MemoriesGallery() {
           </p>
         </motion.div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {photos.map((photo, i) => (
-            <GalleryItem
-              key={photo.alt}
-              src={photo.src}
-              alt={photo.alt}
-              index={i}
-              onClick={() => setSelected(i)}
-            />
+          {displayIndices.map((photoIndex, i) => (
+            <AnimatePresence mode="wait" key={i}>
+              <motion.div
+                key={`${photoIndex}-${i}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <GalleryItem
+                  src={photos[photoIndex].src}
+                  alt={photos[photoIndex].alt}
+                  index={photoIndex}
+                  onClick={() => setSelected(photoIndex)}
+                />
+              </motion.div>
+            </AnimatePresence>
           ))}
         </div>
       </div>
@@ -53,7 +96,7 @@ export function MemoriesGallery() {
       <AnimatePresence>
         {selected !== null && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/70 p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-foreground/90 p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -63,7 +106,7 @@ export function MemoriesGallery() {
             aria-label="Photo preview"
           >
             <motion.div
-              className="relative max-h-[85vh] max-w-3xl overflow-hidden rounded-2xl shadow-2xl"
+              className="relative flex max-h-[90vh] max-w-[90vw] items-center justify-center"
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.85, opacity: 0 }}
@@ -71,11 +114,11 @@ export function MemoriesGallery() {
               onClick={(e) => e.stopPropagation()}
             >
               <Image
-                src={photos[selected].src.replace("w=600&h=400", "w=1200&h=800") || "/placeholder.svg"}
+                src={photos[selected].src}
                 alt={photos[selected].alt}
                 width={1200}
-                height={800}
-                className="h-auto w-full object-contain"
+                height={1600}
+                className="max-h-[90vh] w-auto rounded-2xl shadow-2xl object-contain"
               />
               <button
                 type="button"

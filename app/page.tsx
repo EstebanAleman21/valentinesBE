@@ -2,6 +2,7 @@ import { HeroSection } from "@/components/hero-section";
 import { TogetherCounter } from "@/components/together-counter";
 import { WhyILoveYou } from "@/components/why-i-love-you";
 import { MemoriesGallery } from "@/components/memories-gallery";
+import { StarMap } from "@/components/star-map";
 import { TimelineSection } from "@/components/timeline-section";
 import { LittleNotes } from "@/components/little-notes";
 import { LoveLetter } from "@/components/love-letter";

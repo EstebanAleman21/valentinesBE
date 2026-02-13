@@ -4,11 +4,16 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Heart } from "lucide-react";
 import confetti from "canvas-confetti";
+import emailjs from "@emailjs/browser";
 
 export function AnnoyMeForever() {
   const [clicked, setClicked] = useState(false);
+  const [sending, setSending] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    if (sending) return;
+    
+    setSending(true);
     setClicked(true);
 
     // Fire confetti
@@ -43,13 +48,23 @@ export function AnnoyMeForever() {
       });
     }, 400);
 
-    // Open mailto
-    const email = "email@example.com";
-    const subject = encodeURIComponent("I'm thinking about you \u2764\uFE0F");
-    const body = encodeURIComponent(
-      "Hey you,\n\nJust wanted to let you know that you crossed my mind (again). You always do.\n\nI love you more than words could ever say.\n\nForever yours \u2764\uFE0F"
-    );
-    window.open(`mailto:${email}?subject=${subject}&body=${body}`, "_self");
+    // Send email using EmailJS
+    try {
+      await emailjs.send(
+        'service_i596kms', // You'll need to replace this
+        'template_n547r39', // You'll need to replace this
+        {
+          to_email: 'esteban21112002@gmail.com',
+          message: 'Te extraño, aquí estoy molestándote ❤️',
+        },
+        'lfsf9oAUbJohqnjrD' // You'll need to replace this
+      );
+      console.log('Email sent successfully!');
+    } catch (error) {
+      console.error('Failed to send email:', error);
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -79,10 +94,11 @@ export function AnnoyMeForever() {
           <button
             type="button"
             onClick={handleClick}
-            className="group inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-lg font-semibold text-primary-foreground shadow-lg transition-all hover:shadow-xl hover:brightness-110"
+            disabled={sending}
+            className="group inline-flex items-center gap-3 rounded-full bg-primary px-10 py-4 text-lg font-semibold text-primary-foreground shadow-lg transition-all hover:shadow-xl hover:brightness-110 disabled:opacity-50"
           >
             <Mail className="h-5 w-5 transition-transform group-hover:-rotate-12" />
-            Mandame un abracho
+            {sending ? "Enviando..." : "Mandame un abracho"}
             <Heart className="h-5 w-5 transition-transform group-hover:scale-125" />
           </button>
         </motion.div>

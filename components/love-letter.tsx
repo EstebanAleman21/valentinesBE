@@ -8,15 +8,15 @@ const letterText = `AMORCITOOOOOOOOOO,
 
 Como se empieza una carta que escribo como el millon de lineas de codigo jajajaja. Es diferente bastante diria yo sin embargo eso no le quita lo especial en lo absoluto.
 
-Primero que nada amor mio yo creo que este es el san valentin mas especial que tendremos en los proximos años no por que haya algo super wowo planeado pero sin embargo por que nuestras vidas estan a punto de cambiar...
+Primero que nada amor mio yo creo que este es el san valentin mas especial que tendremos en los proximos años no por que haya algo super wow planeado pero sin embargo por que nuestras vidas estan a punto de cambiar...
 
-Ya se que suena dramtico dejame soy un dramas per es la puritita verdad. En un mes me voy de MTY por lo que espero sean varios años y en unos meses mas estare regresando por ti mi compañera de vida para empezar nuestra travesia juntos por esto llamado vida.
+Ya se que suena dramtico dejame soy un dramas pero es la puritita verdad. En un mes me voy de MTY por lo que espero sean varios años y en unos meses mas estare regresando por ti mi compañera de vida para empezar nuestra travesia juntos por esto llamado vida.
 
-Si te soy sincero jamas me imagine teniendo una vida asi y que sea relativamente posible la gran mayoria de tiempo lo vi como un sueño, sin embargo aqui esta... esta sucediendo y no puedo estar mas feliz de estar haciendo contigo amor enserio.
+Si te soy sincero jamas me imagine teniendo una vida asi y que sea relativamente posible, la gran mayoria de tiempo lo vi como un sueño, sin embargo aqui esta... esta sucediendo y no puedo estar mas feliz de estar haciendo contigo amor enserio.
 
-Barbara en esta pagina no planeo que la visites diario ni tampoco que la tengas guardada en algun bookmark que jamas checaras quiero que este ahi para que cuando nos acordemos tengamos un lugar seguro, un lugar donde ir un lugar donde siempre me puedes contactar.
+Barbara en esta pagina no planeo que la visites diario ni tampoco que la tengas guardada en algun bookmark que jamas checaras quiero que este ahi para que nos acordemos que tenemos un lugar seguro, un lugar donde ir, un lugar donde siempre me puedes contactar.
 
-Se vienen un chorro de cambios chaparrita pero si algo me ha enseñado este ultimo año es que la vida da muchisimas vuelta sy jamas va a estar uno preparado para lo que viene sin embargo no se que me vaya a tirar la vida pero si se que quiero pasarlo contigo, bueno, malo, genial, terrible, asombroso, lo que sea lo quiero contigo.
+Se vienen un chorro de cambios chaparrita pero si algo me ha enseñado este ultimo año es que la vida da muchisimas vueltas y jamas va a estar uno preparado para lo que viene sin embargo no se que me vaya a tirar la vida pero si se que quiero pasarlo contigo, bueno, malo, genial, terrible, asombroso, lo que sea lo quiero contigo.
 
 Para no hacer esto aun mas largo de lo que ya es, solo quiero terminar con esto.
 
